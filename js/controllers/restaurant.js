@@ -608,9 +608,8 @@ $scope.cuisineChanged = function (cuisine) {
 				     }
 				   });
              	
-             	
              	}
-             	else{
+             else{
              		 $location.url('menucard/'+merchant_id+'/'+menu_id+'/'+Date.now());
              		}
              	

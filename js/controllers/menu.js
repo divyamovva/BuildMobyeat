@@ -16,10 +16,9 @@ angular.module('menu' , [ 'mobyeat','custommod'])
     }
 
     $scope.setInits = function () {
-
-
     	          $scope.catnum = null;	    
     	          $scope.menucard = custom.getMenuCard(getMenu.menus , getMenu.categories , getMenu.items );
+//    	          alert(JSON.stringify($scope.menucard));
                 $scope.curr = getMenu.curr_symbol;
                 $scope.decimal=getMenu.deci;
                 $scope.separator=getMenu.decseparate;
@@ -28,12 +27,7 @@ angular.module('menu' , [ 'mobyeat','custommod'])
                 else $scope.separator=false;
                 $scope.slug=getMenu.restaurant.restaurant_slug   
                 $scope.setItemsCount();
-                for (var i=0;i<$scope.menucard.length;i++){
-                        if($scope.menucard[i].menu_id==$stateParams.menuid) {
-                         $rootScope.preMenu={id:$stateParams.menuid,name:$scope.menucard[i].menu_name}
-                        	}          	
-                	}
-
+                $rootScope.preMenu={id:$stateParams.menuid,name:$scope.menucard[0].menu_name}
     };   
     
 $scope.getTotal = function ( cart ) {
@@ -76,7 +70,7 @@ $scope.getTotal = function ( cart ) {
 
     $scope.setItem = function (item_id) {
     $scope.orderItemDetail = null;	
- $ionicModal.fromTemplateUrl('templates/restaurant/item.html', {
+    $ionicModal.fromTemplateUrl('templates/restaurant/item.html', {
         scope: $scope,
         animation: 'slide-in-up'
     }).then(function(modal) {
@@ -93,7 +87,6 @@ $scope.getTotal = function ( cart ) {
              $scope.curr=result.curr_symbol;
              $scope.decimal=result.deci;
              $scope.separator=result.decseparate;
-	          $scope.modal.show();       
 
              if($scope.separator=='yes')
                   $scope.separator=true;
@@ -198,10 +191,11 @@ $scope.getTotal = function ( cart ) {
     }
 $scope.clearView=function(image){
 	if(image){
-		    var myPopup = $ionicPopup.show({
+    var myPopup = $ionicPopup.show({
 
     template: '<img  src="'+mobyeatUrl+'/upload/'+image+'" width="100%" height="150" />',
-     scope: $scope,
+
+    scope: $scope,
     buttons: [
      
       {
@@ -214,10 +208,9 @@ $scope.clearView=function(image){
     ]
     
   });
-		
-		}
-		else{
-			   var myPopup = $ionicPopup.show({
+  }
+  else{
+   var myPopup = $ionicPopup.show({
            template: '<img  src="img/restologos/b-1.jpg" width="100%" height="150" />',  
     scope: $scope,
     buttons: [
@@ -232,8 +225,8 @@ $scope.clearView=function(image){
     ]
     
   });
-			}
-
+  
+  }
   }
 
 	 $scope.addToCart = function () {
@@ -479,7 +472,7 @@ $scope.clearView=function(image){
 }).controller("CheckoutCtrl", function ($scope ,custom, checkoutOptions, $rootScope ,$stateParams , $location,  mobyeat , $http , mobyeatUrl ,  $ionicModal ,$ionicLoading ) {
 	
 	$scope.setInits = function () {
-
+        
 		$scope.email = "";
 $rootScope.mer_publish_key = "";
 $scope.sel_delivery_type="delivery";

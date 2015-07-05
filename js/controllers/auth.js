@@ -130,8 +130,8 @@ angular.module('auth' , [ 'mobyeat' ])
              .then(function(success) {
                     $scope.getFacebookUser(); 
                }, function (error) {
-                    alert("error");
-                    alert(JSON.stringify(error));
+                    //alert("error");
+                    //alert(JSON.stringify(error));
                });
     }
     $scope.facebookLogout = function () {

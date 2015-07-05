@@ -16,7 +16,8 @@ angular.module('todo', ['ionic', 'ngCordova' , 'ionic.service.core' , 'ionic.ser
         i18n.getlangStrings(lang_code); 
     })
     .config(function($stateProvider, $urlRouterProvider, $httpProvider , $ionicAppProvider , $cordovaFacebookProvider  ) {
-        var appID = 929955023728341;
+       
+        var appID = config_vars.facebook.id;
         var version = "v2.0"; // or leave blank and default is v2.0
         try {        
          $cordovaFacebookProvider.browserInit(appID, version);
@@ -26,12 +27,12 @@ angular.module('todo', ['ionic', 'ngCordova' , 'ionic.service.core' , 'ionic.ser
 		 // Identify app
 		  $ionicAppProvider.identify({
 		    // The App ID (from apps.ionic.io) for the server
-		    app_id: 'da185b77',
+		    app_id: config_vars.ionic_io.app_id,
 		    // The public API key all services will use for this app
-		    api_key: '77d9aeeb5bd596c7b1cb5f7b1b731c1cd661e461bcb3d455',
+		    api_key: config_vars.ionic_io.publish_key,
 		    // Set the app to use development pushes
 		    //dev_push: true
-		    gcm_id: '482668327136'
+		    gcm_id: config_vars.gcm_id
 		  });    	
     	
         // login if user
